@@ -6,7 +6,7 @@ public class 과제3 {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("갯수를 입력하시오:");
 		int n = sc.nextInt();
-		int y = 0 ;
+		int y = 1 ;
 		int i;
 		while(n>=y) {
 			
