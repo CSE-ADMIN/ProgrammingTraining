@@ -7,11 +7,11 @@ class BankAccount{
 	Scanner sc = new Scanner(System.in);
 	
 	public void Account() {
-		System.out.print("ï¿½ï¿½ï¿½Â¹ï¿½È£ : ");
+		System.out.print("°èÁÂ¹øÈ£ : ");
 		accountNumber = sc.nextLine();
-		System.out.print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : ");
+		System.out.print("¿¹±ÝÁÖ : ");
 		owner = sc.nextLine();
-		System.out.print("ï¿½Ê±ï¿½ ï¿½Ü¾ï¿½ : ");
+		System.out.print("ÃÊ±â ÀÜ¾× : ");
 		balance = sc.nextInt();
 	}
 	
@@ -21,23 +21,28 @@ class BankAccount{
 	
 	void withdraw (int amount) {
 		if (balance-amount <0)
-			System.out.println("ï¿½Ü¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
+			System.out.println("ÀÜ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
 		else
 			balance-=amount;
 	}
 	
 	public String toString() {
 		String buf="";
-		buf+="ï¿½ï¿½ï¿½Â¹ï¿½È£ : " + accountNumber + "\n";
-		buf+="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : " + owner + "\n";
-		buf+="ï¿½Ü¾ï¿½ : " + balance;
+		buf+="°èÁÂ¹øÈ£ : " + accountNumber + "\n";
+		buf+="¿¹±ÝÁÖ : " + owner + "\n";
+		buf+="ÀÜ¾× : " + balance;
 		return buf;
 	}
 	public void sendAccount(int amount, BankAccount otherAccount) {
-		withdraw(amount);
-		otherAccount.deposit(amount);	
+		if (balance>amount) {
+			withdraw(amount);
+			otherAccount.deposit(amount);
+		}
+		else
+			System.out.println("ÀÜ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
 	}
 }
+
 
 public class report1 {
 	public static void main(String args[]) {
@@ -46,20 +51,20 @@ public class report1 {
 		BankAccount ac1 = new BankAccount();
 		BankAccount ac2 = new BankAccount();
 		
-		System.out.println("ï¿½ï¿½ï¿½ï¿½1");
+		System.out.println("°èÁÂ1");
 		ac1.Account();
-		System.out.println("ï¿½ï¿½ï¿½ï¿½2");
+		System.out.println("°èÁÂ2");
 		ac2.Account();
 		
 		System.out.println("===========================");
-		System.out.print("ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¾ï¿½ : ");
+		System.out.print("°èÁÂ1¿¡¼­ °èÁÂ2·Î º¸³¾ ±Ý¾× : ");
 		int money = sc.nextInt();
-		
 		ac1.sendAccount(money, ac2);
 		System.out.println("===========================");
-		System.out.println("ï¿½ï¿½ï¿½ï¿½1");
+		
+		System.out.println("°èÁÂ1");
 		System.out.println(ac1.toString());
-		System.out.println("ï¿½ï¿½ï¿½ï¿½2");
+		System.out.println("°èÁÂ2");
 		System.out.println(ac2.toString());
 		
 	}
