@@ -4,7 +4,7 @@ class BankAccount {
 	String accountNumber;// 계좌번호
 	String owner;// 예금주
 	int balance;// 잔액 표시
-	
+
 	void Number() {
 		System.out.println("계좌번호 : " + accountNumber);
 	}
@@ -26,11 +26,14 @@ class BankAccount {
 	}// 잔액 출력 메소드
 
 	public void sendAccount(int amount, BankAccount otherAccount) {
-		otherAccount.deposit(amount);
-		this.withdraw(amount);
+
+		if (this.balance < amount)
+			System.out.println("잔액이 부족합니다.");
+		else
+			{otherAccount.deposit(amount);
+		this.withdraw(amount);}
 	}// 계좌이체 기능 메소드
-	
-	
+
 }
 
 public class 과제7 {
@@ -60,25 +63,18 @@ public class 과제7 {
 		System.out.println("계좌1에서 계좌2로 송금 할 금액 : ");
 		int amount = sc.nextInt();
 		num1.sendAccount(amount, num2);
-		while (true) {
-			if(num1.balance<0) {
-				System.out.println("오류 입니다.");
-				break;
-			}
-			else {
-			System.out.println("===============================");
-			System.out.println("계좌1");
-			num1.Number();
-			num1.owner();
-			System.out.println(num1.toString());
-			System.out.println();
-			System.out.println("계좌2");
-			num2.Number();
-			num2.owner();
-			System.out.println(num2.toString());
-			break;
-			}
-		}
+		
+		System.out.println("===============================");
+		System.out.println("계좌1");
+		num1.Number();
+		num1.owner();
+		System.out.println(num1.toString());
+		System.out.println();
+		System.out.println("계좌2");
+		num2.Number();
+		num2.owner();
+		System.out.println(num2.toString());
+
 	}
 
 }
